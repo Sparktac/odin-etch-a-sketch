@@ -9,14 +9,10 @@ function makeGrid(rows, columns) {
         let box = document.createElement('div');
         box.innerText = (i + 1);
         containerDiv.appendChild(box).classList.add('grid-item');
+        box.addEventListener('mouseover', () => {
+            box.style.backgroundColor = "lightblue";
+        })
     }
 }
 
 makeGrid(16, 16);
-
-function chngBgColor() {
-    gridItemDiv.style.setProperty('background-color', 'lightblue')
-}
-
-
-// gridItemDiv.addEventListener('mouseover', chngBgColor);
