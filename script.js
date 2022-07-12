@@ -32,7 +32,7 @@ function promptUser() {
             return;
         } if (userInput === null) {
             return;
-        } if (isNaN(userInput) || userInput == '') {
+        } if (isNaN(userInput) || userInput == '') {                            //Not working correctly
             prompt('Please enter a valid number 1-100: ');
         }
         rows = userInput;
