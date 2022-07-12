@@ -19,10 +19,21 @@ function makeGrid(rows, columns) {
             box.style.backgroundColor = "lightblue";
         })
     }
+    promptUser();
 }
 
 makeGrid(16, 16);
 
 function promptUser() {
-    prompt('How many squares would you like per side?')
+    button.addEventListener('click', () => {
+        document.querySelectorAll('.grid-item').forEach(e => e.remove());
+        let userInput = prompt('Please enter the number of grid squares per side (Max: 100): ');
+        if (userInput > 100) {
+            alert('ERROR! You have entered a grid size larger than 100.');
+            return;
+        }
+        rows = userInput;
+        columns = userInput;
+        makeGrid(rows, columns);
+    })
 }
