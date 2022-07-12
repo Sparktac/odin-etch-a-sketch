@@ -7,7 +7,7 @@
     display: grid;
     gap: 1px;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 2fr));
 }
 
 #buttoncontainer {
