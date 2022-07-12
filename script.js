@@ -3,11 +3,17 @@ const gridItemDiv = document.querySelectorAll('div.grid-item');
 const button = document.querySelector('button');
 
 function makeGrid(rows, columns) {
+
+    //Create the grid
     containerDiv.style.setProperty('--grid-rows', rows)
     containerDiv.style.setProperty('--grid-columns', columns)
+    containerDiv.style.width = "960px";
+    containerDiv.style.overflow = "hidden";
     for (i = 0; i < (rows * columns); i++) {
         let box = document.createElement('div');
-        box.innerText = (i + 1);
+        box.style.minWidth = "0";
+        box.style.minHeight = "0";
+        box.style.overflow = "hidden";
         containerDiv.appendChild(box).classList.add('grid-item');
         box.addEventListener('mouseover', () => {
             box.style.backgroundColor = "lightblue";
