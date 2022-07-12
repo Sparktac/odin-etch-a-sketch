@@ -15,3 +15,16 @@
     border: 1px solid #ddd;
     text-align: center;
 }
+
+/* Button */
+button {
+    background-color: rgb(186, 236, 186);
+    padding: 8px;
+    margin: 8px;
+    border-radius: 8px;
+}
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+}

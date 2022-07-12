@@ -1,6 +1,6 @@
 const containerDiv = document.querySelector('#container')
 const gridItemDiv = document.querySelectorAll('div.grid-item');
-let gridCount = 0;
+const button = document.querySelector('button');
 
 function makeGrid(rows, columns) {
     containerDiv.style.setProperty('--grid-rows', rows)
@@ -16,3 +16,7 @@ function makeGrid(rows, columns) {
 }
 
 makeGrid(16, 16);
+
+function promptUser() {
+    prompt('How many squares would you like per side?')
+}
