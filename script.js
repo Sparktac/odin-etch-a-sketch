@@ -3,7 +3,6 @@ const gridItemDiv = document.querySelectorAll('div.grid-item');
 const button = document.querySelector('button');
 
 function makeGrid(rows, columns) {
-
     //Create the grid
     containerDiv.style.setProperty('--grid-rows', rows)
     containerDiv.style.setProperty('--grid-columns', columns)
@@ -16,7 +15,7 @@ function makeGrid(rows, columns) {
         box.style.overflow = "hidden";
         containerDiv.appendChild(box).classList.add('grid-item');
         box.addEventListener('mouseover', () => {
-            box.style.backgroundColor = "lightblue";
+            box.style.backgroundColor = getRandomColor();
         })
     }
 }
@@ -32,10 +31,20 @@ function promptUser() {
             return;
         } if (userInput === null) {
             return;
-        } if (isNaN(userInput) || userInput == '') {                            //Not working correctly
+        } if (isNaN(userInput) || userInput == '') {                            //Not working as intended
             prompt('Please enter a valid number 1-100: ');
         }
         rows = userInput;
         columns = userInput;
         makeGrid(rows, columns);
+}
+
+//Random color generator function
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
