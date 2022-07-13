@@ -15,7 +15,8 @@ function makeGrid(rows, columns) {
         box.style.overflow = "hidden";
         containerDiv.appendChild(box).classList.add('grid-item');
         box.addEventListener('mouseover', () => {
-            box.style.backgroundColor = getRandomColor();
+            box.style.backgroundColor = getRandomColor();                           
+            box.style.opacity = (parseFloat(box.style.opacity) || 0) + 0.2;
         })
     }
 }
