@@ -1,6 +1,5 @@
 const containerDiv = document.querySelector('#container')
 const gridItemDiv = document.querySelectorAll('div.grid-item');
-const button = document.querySelector('button');
 
 function makeGrid(rows, columns) {
     //Create the grid
@@ -15,8 +14,16 @@ function makeGrid(rows, columns) {
         box.style.overflow = "hidden";
         containerDiv.appendChild(box).classList.add('grid-item');
         box.addEventListener('mouseover', () => {
-            box.style.backgroundColor = getRandomColor();                           
-            box.style.opacity = (parseFloat(box.style.opacity) || 0) + 0.2;
+            if (box.style.backgroundColor == ('')) {
+                let color = getRandomColor();
+                box.style.backgroundColor = color;
+                box.style.opacity = '0.10';
+                return box.style.backgroundColor;
+            }
+            else if (box.style.opacity <= '0.90') {
+                box.style.opacity = parseFloat(box.style.opacity) + .10;
+                return box.style.backgroundColor;
+            }
         })
     }
 }
