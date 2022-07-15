@@ -35,7 +35,7 @@ function promptUser() {
         let userInput = prompt('Please enter the number of grid squares per side (Max: 100): ');
         if (userInput > 100) {
             alert('ERROR! You have entered a grid size larger than 100.');
-        } if (userInput === null) {
+        } if (userInput == null) {
             prompt('Input field must be valid');
         } if (isNaN(userInput) || userInput == '') {                            //Not working as intended
             prompt('Please enter a valid number 1-100: ');
