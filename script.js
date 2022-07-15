@@ -2,7 +2,6 @@ const containerDiv = document.querySelector('#container')
 const gridItemDiv = document.querySelectorAll('div.grid-item');
 
 function makeGrid(rows, columns) {
-    //Create the grid
     containerDiv.style.setProperty('--grid-rows', rows)
     containerDiv.style.setProperty('--grid-columns', columns)
     containerDiv.style.width = "960px";
@@ -35,14 +34,15 @@ function promptUser() {
         let userInput = prompt('Please enter the number of grid squares per side (Max: 100): ');
         if (userInput > 100) {
             alert('ERROR! You have entered a grid size larger than 100.');
-        } if (userInput === null) {
-            prompt('Input field must be valid');
-        } if (isNaN(userInput) || userInput == '') {                            //Not working as intended
-            prompt('Please enter a valid number 1-100: ');
+            makeGrid(16, 16);
+        } if (userInput === null || userInput < 0 || userInput == '' || isNaN(userInput)) {
+            alert('Please enter a valid number 1-100: ');
+            makeGrid(16, 16);
+        } if (userInput >= 1 && userInput <= 100) {
+            rows = userInput;
+            columns = userInput;
+            makeGrid(rows, columns);
         }
-        rows = userInput;
-        columns = userInput;
-        makeGrid(rows, columns);
 }
 
 //Random color generator function
