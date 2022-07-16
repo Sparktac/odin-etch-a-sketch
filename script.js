@@ -1,33 +1,30 @@
 const containerDiv = document.querySelector('#container')
 const gridItemDiv = document.querySelectorAll('div.grid-item');
 
+makeGrid(16, 16);
+
 function makeGrid(rows, columns) {
     containerDiv.style.setProperty('--grid-rows', rows)
     containerDiv.style.setProperty('--grid-columns', columns)
     containerDiv.style.width = "960px";
-    containerDiv.style.overflow = "hidden";
+    containerDiv.style.overflow = "hidden";                                     //Overflow? Make grid fit inside set parameters
     for (i = 0; i < (rows * columns); i++) {
-        let box = document.createElement('div');
-        box.style.minWidth = "0";
-        box.style.minHeight = "0";
-        box.style.overflow = "hidden";
-        containerDiv.appendChild(box).classList.add('grid-item');
+        const box = getBoxElement();
+        const innerBox = getBoxElement();
+        containerDiv.appendChild(box);
+        box.appendChild(innerBox).classList.add('grid-item');
         box.addEventListener('mouseover', () => {
             if (box.style.backgroundColor == ('')) {
-                let color = getRandomColor();
-                box.style.backgroundColor = color;
-                box.style.opacity = '0.10';
-                return box.style.backgroundColor;
+                box.style.backgroundColor = '#000000';
+                innerBox.style.backgroundColor = getRandomColor();
+                innerBox.style.opacity = '1';
             }
-            else if (box.style.opacity <= '0.90') {
-                box.style.opacity = parseFloat(box.style.opacity) + .10;
-                return box.style.backgroundColor;
+            else if (innerBox.style.opacity > 0) {
+                innerBox.style.opacity = parseFloat(innerBox.style.opacity) - .10;
             }
         })
     }
 }
-
-makeGrid(16, 16);
 
 function promptUser() {
         document.querySelectorAll('.grid-item').forEach(e => e.remove());
@@ -53,4 +50,12 @@ function getRandomColor() {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+
+function getBoxElement() {
+    let box = document.createElement('div');
+    box.style.minWidth = "0";
+    box.style.minHeight = "0";
+    box.style.overflow = "hidden";
+    return box;
 }
