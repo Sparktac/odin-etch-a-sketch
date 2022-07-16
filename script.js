@@ -6,12 +6,10 @@ makeGrid(16, 16);
 function makeGrid(rows, columns) {
     containerDiv.style.setProperty('--grid-rows', rows)
     containerDiv.style.setProperty('--grid-columns', columns)
-    containerDiv.style.width = "960px";
-    containerDiv.style.overflow = "hidden";                                     //Overflow? Make grid fit inside set parameters
     for (i = 0; i < (rows * columns); i++) {
         const box = getBoxElement();
         const innerBox = getBoxElement();
-        containerDiv.appendChild(box);
+        containerDiv.appendChild(box).classList.add('grid-item-outer');
         box.appendChild(innerBox).classList.add('grid-item');
         box.addEventListener('mouseover', () => {
             if (box.style.backgroundColor == ('')) {
@@ -27,19 +25,24 @@ function makeGrid(rows, columns) {
 }
 
 function promptUser() {
-        document.querySelectorAll('.grid-item').forEach(e => e.remove());
-        let userInput = prompt('Please enter the number of grid squares per side (Max: 100): ');
-        if (userInput > 100) {
-            alert('ERROR! You have entered a grid size larger than 100.');
-            makeGrid(16, 16);
-        } if (userInput === null || userInput < 0 || userInput == '' || isNaN(userInput)) {
-            alert('Please enter a valid number 1-100: ');
-            makeGrid(16, 16);
-        } if (userInput >= 1 && userInput <= 100) {
-            rows = userInput;
-            columns = userInput;
-            makeGrid(rows, columns);
+        document.querySelectorAll('.grid-item-outer').forEach(e => e.remove());
+        let userInput;
+        userInput = prompt('Please enter the number of grid squares per side (Max: 100): ');
+        while (isInvalidUserInput(userInput)) {    
+            userInput = prompt('Please enter a valid number 1-100: ');
+            console.log(userInput);
         }
+        makeGrid(userInput, userInput);
+
+        // if (userInput > 100) {
+        //     alert('ERROR! You have entered a grid size larger than 100.');
+        // } if (isNaN(userInput) || userInput == null || userInput <= 0 || userInput == '') {
+        //     alert('Please enter a valid number 1-100: ');  
+        // } if (userInput >= 1 && userInput <= 100) {
+        //     rows = userInput;
+        //     columns = userInput;
+        //     makeGrid(rows, columns);
+        // }
 }
 
 //Random color generator function
@@ -54,8 +57,16 @@ function getRandomColor() {
 
 function getBoxElement() {
     let box = document.createElement('div');
-    box.style.minWidth = "0";
-    box.style.minHeight = "0";
-    box.style.overflow = "hidden";
     return box;
+}
+
+function isInvalidUserInput(userInput) {
+    if (userInput > 100) {
+            alert('ERROR! You have entered a grid size larger than 100.');
+            return true;
+        } if (isNaN(userInput) || userInput == null || userInput <= 0 || userInput == '') {
+            alert('Please enter a valid number 1-100: ');
+            return true;
+    } 
+    return false;
 }
